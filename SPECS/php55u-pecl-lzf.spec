@@ -6,6 +6,7 @@
 
 %define real_name php-pecl-lzf
 %define php_base php55u
+%define basever 5.5
 
 Name:		%{php_base}-pecl-lzf
 Version:	1.6.2
@@ -33,6 +34,9 @@ Requires:	%{php_base}-api = %{php_apiver}
 Requires(post):	%{__pecl}
 Requires(postun):	%{__pecl}
 Provides:	%{php_base}-pecl(%{pecl_name}) = %{version}
+
+Conflicts:	%{real_name} < %{basever}
+Provides:	%{real_name} = %{version}-%{release}
 
 # RPM 4.8
 %{?filter_provides_in: %filter_provides_in %{php_extdir}/.*\.so$}
@@ -112,6 +116,6 @@ fi
 %{pecl_xmldir}/%{name}.xml
 
 %changelog
-* Tue Oct 22 2013 Mark McKinstry <mmckinst@nexcess.net> - 1.6.2-1.ius
+* Thu Oct 24 2013 Mark McKinstry <mmckinst@nexcess.net> - 1.6.2-1.ius
 - build RPM from 1.6.2-5 from f20
 - add ius suffix to release
