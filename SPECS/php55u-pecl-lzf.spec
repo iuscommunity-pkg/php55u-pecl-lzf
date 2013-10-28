@@ -2,11 +2,10 @@
 %{!?__pecl:		%{expand: %%global __pecl     %{_bindir}/pecl}}
 %{!?php_extdir:		%{expand: %%global php_extdir %(php-config --extension-dir)}}
 
-%define pecl_name LZF
-
-%define real_name php-pecl-lzf
-%define php_base php55u
-%define basever 5.5
+%define pecl_name	LZF
+%define real_name	php-pecl-lzf
+%define php_base	php55u
+%define basever		5.5
 
 Name:		%{php_base}-pecl-lzf
 Version:	1.6.2
@@ -116,6 +115,7 @@ fi
 %{pecl_xmldir}/%{name}.xml
 
 %changelog
-* Thu Oct 24 2013 Mark McKinstry <mmckinst@nexcess.net> - 1.6.2-1.ius
+* Thu Oct 28 2013 Mark McKinstry <mmckinst@nexcess.net> - 1.6.2-1.ius
 - build RPM from 1.6.2-5 from f20
 - add ius suffix to release
+- clean up spec some
