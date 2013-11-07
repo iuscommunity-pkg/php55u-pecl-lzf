@@ -9,7 +9,7 @@
 
 Name:		%{php_base}-pecl-lzf
 Version:	1.6.2
-Release:	6.ius%{?dist}
+Release:	7.ius%{?dist}
 Summary:	Extension to handle LZF de/compression
 Group:		Development/Languages
 License:	PHP
@@ -33,6 +33,7 @@ Requires:	%{php_base}-api = %{php_apiver}
 Requires(post):	%{__pecl}
 Requires(postun):	%{__pecl}
 Provides:	%{php_base}-pecl(%{pecl_name}) = %{version}
+Provides:       php-pecl(%{pecl_name}) = %{version}-%{release}
 
 Conflicts:	%{real_name} < %{basever}
 Provides:	%{real_name} = %{version}-%{release}
@@ -115,6 +116,9 @@ fi
 %{pecl_xmldir}/%{name}.xml
 
 %changelog
+* Thu Nov 07 2013 Ben Harper <ben.harper@rackspace.com> - 1.6.2-7.ius
+- adding provides per LB bug 1249003
+
 * Thu Oct 28 2013 Mark McKinstry <mmckinst@nexcess.net> - 1.6.2-6.ius
 - build IUS RPM from 1.6.2-5 from f20
 - add ius suffix to release
