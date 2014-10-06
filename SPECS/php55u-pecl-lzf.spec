@@ -31,7 +31,7 @@ Requires:	%{php_base}-api = %{php_apiver}
 Requires(post):	%{__pecl}
 Requires(postun):	%{__pecl}
 Provides:	%{php_base}-pecl(%{pecl_name}) = %{version}
-Provides:       php-pecl(%{pecl_name}) = %{version}-%{release}
+Provides:	php-pecl(%{pecl_name}) = %{version}-%{release}
 
 Conflicts:	%{real_name} < %{basever}
 Provides:	%{real_name} = %{version}-%{release}
