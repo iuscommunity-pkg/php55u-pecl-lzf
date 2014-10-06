@@ -10,7 +10,7 @@
 
 Name:		%{php_base}-pecl-lzf
 Version:	1.6.2
-Release:	7.ius%{?dist}
+Release:	8.ius%{?dist}
 Summary:	Extension to handle LZF de/compression
 Group:		Development/Languages
 License:	PHP
@@ -117,6 +117,9 @@ fi
 
 
 %changelog
+* Mon Oct 06 2014 Carl George <carl.george@rackspace.com> - 1.6.2-8.ius
+- Add numerical prefix to extension configuration file
+
 * Thu Nov 07 2013 Ben Harper <ben.harper@rackspace.com> - 1.6.2-7.ius
 - adding provides per LB bug 1249003
 
