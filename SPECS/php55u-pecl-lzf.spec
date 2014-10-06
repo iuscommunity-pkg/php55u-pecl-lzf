@@ -18,8 +18,6 @@ Source0:	http://pecl.php.net/get/%{pecl_name}-%{version}.tgz
 # remove bundled lzf libs
 Patch0:		php-lzf-rm-bundled-libs.patch
 
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-
 BuildRequires:	%{php_base}-devel
 BuildRequires:	%{php_base}-pear >= 1:1.4.0
 BuildRequires:	liblzf-devel
@@ -41,8 +39,6 @@ Provides:	%{real_name} = %{version}-%{release}
 # RPM 4.8
 %{?filter_provides_in: %filter_provides_in %{php_extdir}/.*\.so$}
 %{?filter_setup}
-# RPM 4.9
-%global __provides_exclude_from %{?__provides_exclude_from:%__provides_exclude_from|}%{php_extdir}/.*\\.so$
 
 
 %description
@@ -59,11 +55,13 @@ slight speed cost.
 [ -f package2.xml ] || %{__mv} package.xml package2.xml
 %{__mv} package2.xml %{pecl_name}-%{version}/%{pecl_name}.xml
 
+
 %build
 cd %{pecl_name}-%{version}
 phpize
 %configure
 %{__make} %{?_smp_mflags}
+
 
 %install
 cd %{pecl_name}-%{version}
@@ -95,6 +93,7 @@ NO_INTERACTION=1 \
 %clean
 %{__rm} -rf %{buildroot}
 
+
 %if 0%{?pecl_install:1}
 %post
 %{pecl_install} %{pecl_xmldir}/%{name}.xml >/dev/null || :
@@ -108,12 +107,13 @@ if [ $1 -eq 0 ] ; then
 fi
 %endif
 
+
 %files
-%defattr(-,root,root,-)
 %doc %{pecl_name}-%{version}/CREDITS
 %config(noreplace) %{_sysconfdir}/php.d/lzf.ini
 %{php_extdir}/lzf.so
 %{pecl_xmldir}/%{name}.xml
+
 
 %changelog
 * Thu Nov 07 2013 Ben Harper <ben.harper@rackspace.com> - 1.6.2-7.ius
