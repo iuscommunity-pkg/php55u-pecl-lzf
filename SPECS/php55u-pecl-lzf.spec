@@ -6,6 +6,7 @@
 %define real_name	php-pecl-lzf
 %define php_base	php55u
 %define basever		5.5
+%global ini_name	40-lzf.ini
 
 Name:		%{php_base}-pecl-lzf
 Version:	1.6.2
@@ -68,8 +69,8 @@ cd %{pecl_name}-%{version}
 %{__rm} -rf %{buildroot}
 %{__make} install INSTALL_ROOT=%{buildroot} INSTALL="install -p"
 
-%{__mkdir_p} %{buildroot}%{_sysconfdir}/php.d
-%{__cat} > %{buildroot}%{_sysconfdir}/php.d/lzf.ini << 'EOF'
+%{__mkdir_p} %{buildroot}%{php_inidir}
+%{__cat} > %{buildroot}%{php_inidir}/%{ini_name} << 'EOF'
 ; Enable %{pecl_name} extension module
 extension=lzf.so
 EOF
@@ -110,7 +111,7 @@ fi
 
 %files
 %doc %{pecl_name}-%{version}/CREDITS
-%config(noreplace) %{_sysconfdir}/php.d/lzf.ini
+%config(noreplace) %{php_inidir}/%{ini_name}
 %{php_extdir}/lzf.so
 %{pecl_xmldir}/%{name}.xml
 
