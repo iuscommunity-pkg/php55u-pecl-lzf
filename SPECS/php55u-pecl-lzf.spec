@@ -22,15 +22,13 @@ Patch0:		php-lzf-rm-bundled-libs.patch
 BuildRequires:	%{php_base}-devel
 BuildRequires:	%{php_base}-pear >= 1:1.4.0
 BuildRequires:	liblzf-devel
-%if 0%{?php_zend_api:1}
+
 Requires:	%{php_base}(zend-abi) = %{php_zend_api}
 Requires:	%{php_base}(api) = %{php_core_api}
-%else
-# for EL-5
-Requires:	%{php_base}-api = %{php_apiver}
-%endif
+
 Requires(post):	%{php_base}-pear
 Requires(postun):	%{php_base}-pear
+
 Provides:	%{php_base}-pecl(%{pecl_name}) = %{version}
 Provides:	php-pecl(%{pecl_name}) = %{version}-%{release}
 
