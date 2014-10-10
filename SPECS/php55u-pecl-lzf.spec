@@ -29,11 +29,17 @@ Requires:	%{php_base}(api) = %{php_core_api}
 Requires(post):	%{php_base}-pear
 Requires(postun):	%{php_base}-pear
 
+Provides:	php-%{pecl_name} = %{version}
+Provides:	php-%{pecl_name}%{?_isa} = %{version}
+Provides:	php-pecl(%{pecl_name}) = %{version}
+Provides:	php-pecl(%{pecl_name})%{?_isa} = %{version}
+Provides:	%{php_base}-%{pecl_name} = %{version}
+Provides:	%{php_base}-%{pecl_name}%{?_isa} = %{version}
 Provides:	%{php_base}-pecl(%{pecl_name}) = %{version}
-Provides:	php-pecl(%{pecl_name}) = %{version}-%{release}
+Provides:	%{php_base}-pecl(%{pecl_name})%{?_isa} = %{version}
 
 Conflicts:	%{real_name} < %{basever}
-Provides:	%{real_name} = %{version}-%{release}
+Provides:	%{real_name} = %{version}
 
 # RPM 4.8
 %{?filter_provides_in: %filter_provides_in %{php_extdir}/.*\.so$}
