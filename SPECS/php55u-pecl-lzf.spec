@@ -29,8 +29,8 @@ Requires:	%{php_base}(api) = %{php_core_api}
 # for EL-5
 Requires:	%{php_base}-api = %{php_apiver}
 %endif
-Requires(post):	%{__pecl}
-Requires(postun):	%{__pecl}
+Requires(post):	%{php_base}-pear
+Requires(postun):	%{php_base}-pear
 Provides:	%{php_base}-pecl(%{pecl_name}) = %{version}
 Provides:	php-pecl(%{pecl_name}) = %{version}-%{release}
 
