@@ -9,7 +9,7 @@
 
 Name:		%{php_base}-pecl-lzf
 Version:	1.6.2
-Release:	9.ius%{?dist}
+Release:	10.ius%{?dist}
 Summary:	Extension to handle LZF de/compression
 Group:		Development/Languages
 License:	PHP
@@ -120,6 +120,9 @@ fi
 
 
 %changelog
+* Wed Oct 15 2014 Carl George <carl.george@rackspace.com> - 1.6.2-10.ius
+- Conflict with the correct version
+
 * Fri Oct 10 2014 Carl George <carl.george@rackspace.com> - 1.6.2-9.ius
 - Directly require the correct pear package, not /usr/bin/pecl
 - Use same provides as stock package
