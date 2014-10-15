@@ -5,7 +5,6 @@
 %define pecl_name	LZF
 %define real_name	php-pecl-lzf
 %define php_base	php55u
-%define basever		5.5
 %global ini_name	40-lzf.ini
 
 Name:		%{php_base}-pecl-lzf
@@ -38,7 +37,7 @@ Provides:	%{php_base}-%{pecl_name}%{?_isa} = %{version}
 Provides:	%{php_base}-pecl(%{pecl_name}) = %{version}
 Provides:	%{php_base}-pecl(%{pecl_name})%{?_isa} = %{version}
 
-Conflicts:	%{real_name} < %{basever}
+Conflicts:	%{real_name} < %{version}
 Provides:	%{real_name} = %{version}
 
 # RPM 4.8
