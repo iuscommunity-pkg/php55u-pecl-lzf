@@ -8,8 +8,8 @@
 %global ini_name	40-lzf.ini
 
 Name:		%{php_base}-pecl-lzf
-Version:	1.6.2
-Release:	10.ius%{?dist}
+Version:	1.6.3
+Release:	1.ius%{?dist}
 Summary:	Extension to handle LZF de/compression
 Group:		Development/Languages
 License:	PHP
@@ -120,6 +120,9 @@ fi
 
 
 %changelog
+* Tue Apr 21 2015 Carl George <carl.george@rackspace.com> - 1.6.3-1.ius
+- Latest upstream
+
 * Wed Oct 15 2014 Carl George <carl.george@rackspace.com> - 1.6.2-10.ius
 - Conflict with the correct version
 
