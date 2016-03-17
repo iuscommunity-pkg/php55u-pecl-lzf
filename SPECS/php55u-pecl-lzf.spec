@@ -1,42 +1,42 @@
-%global php_apiver	%((echo 0; php -i 2>/dev/null | sed -n 's/^PHP API => //p') | tail -1)
-%{!?__pecl:		%{expand: %%global __pecl     %{_bindir}/pecl}}
-%{!?php_extdir:		%{expand: %%global php_extdir %(php-config --extension-dir)}}
+%global php_apiver %((echo 0; php -i 2>/dev/null | sed -n 's/^PHP API => //p') | tail -1)
+%{!?__pecl: %{expand: %%global __pecl %{_bindir}/pecl}}
+%{!?php_extdir: %{expand: %%global php_extdir %(php-config --extension-dir)}}
 
-%define pecl_name	LZF
-%define real_name	php-pecl-lzf
-%define php_base	php55u
-%global ini_name	40-lzf.ini
+%define pecl_name LZF
+%define real_name php-pecl-lzf
+%define php_base php55u
+%global ini_name 40-lzf.ini
 
-Name:		%{php_base}-pecl-lzf
-Version:	1.6.3
-Release:	1.ius%{?dist}
-Summary:	Extension to handle LZF de/compression
-Group:		Development/Languages
-License:	PHP
-URL:		http://pecl.php.net/package/%{pecl_name}
-Source0:	http://pecl.php.net/get/%{pecl_name}-%{version}.tgz
+Name: %{php_base}-pecl-lzf
+Version: 1.6.3
+Release: 1.ius%{?dist}
+Summary: Extension to handle LZF de/compression
+Group: Development/Languages
+License: PHP
+URL: http://pecl.php.net/package/%{pecl_name}
+Source0: http://pecl.php.net/get/%{pecl_name}-%{version}.tgz
 
-BuildRequires:	%{php_base}-devel
-BuildRequires:	%{php_base}-pear >= 1:1.4.0
-BuildRequires:	liblzf-devel
+BuildRequires: %{php_base}-devel
+BuildRequires: %{php_base}-pear >= 1:1.4.0
+BuildRequires: liblzf-devel
 
-Requires:	%{php_base}(zend-abi) = %{php_zend_api}
-Requires:	%{php_base}(api) = %{php_core_api}
+Requires: %{php_base}(zend-abi) = %{php_zend_api}
+Requires: %{php_base}(api) = %{php_core_api}
 
-Requires(post):	%{php_base}-pear
-Requires(postun):	%{php_base}-pear
+Requires(post): %{php_base}-pear
+Requires(postun): %{php_base}-pear
 
-Provides:	php-%{pecl_name} = %{version}
-Provides:	php-%{pecl_name}%{?_isa} = %{version}
-Provides:	php-pecl(%{pecl_name}) = %{version}
-Provides:	php-pecl(%{pecl_name})%{?_isa} = %{version}
-Provides:	%{php_base}-%{pecl_name} = %{version}
-Provides:	%{php_base}-%{pecl_name}%{?_isa} = %{version}
-Provides:	%{php_base}-pecl(%{pecl_name}) = %{version}
-Provides:	%{php_base}-pecl(%{pecl_name})%{?_isa} = %{version}
+Provides: php-%{pecl_name} = %{version}
+Provides: php-%{pecl_name}%{?_isa} = %{version}
+Provides: php-pecl(%{pecl_name}) = %{version}
+Provides: php-pecl(%{pecl_name})%{?_isa} = %{version}
+Provides: %{php_base}-%{pecl_name} = %{version}
+Provides: %{php_base}-%{pecl_name}%{?_isa} = %{version}
+Provides: %{php_base}-pecl(%{pecl_name}) = %{version}
+Provides: %{php_base}-pecl(%{pecl_name})%{?_isa} = %{version}
 
-Conflicts:	%{real_name} < %{version}
-Provides:	%{real_name} = %{version}
+Conflicts: %{real_name} < %{version}
+Provides: %{real_name} = %{version}
 
 # RPM 4.8
 %{?filter_provides_in: %filter_provides_in %{php_extdir}/.*\.so$}
@@ -49,6 +49,7 @@ library
 
 LZF is a very fast compression algorithm, ideal for saving space with a 
 slight speed cost.
+
 
 %prep
 %setup -c -q
