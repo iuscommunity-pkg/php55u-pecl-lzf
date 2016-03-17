@@ -138,7 +138,7 @@ fi
 * Thu Nov 07 2013 Ben Harper <ben.harper@rackspace.com> - 1.6.2-7.ius
 - adding provides per LB bug 1249003
 
-* Thu Oct 28 2013 Mark McKinstry <mmckinst@nexcess.net> - 1.6.2-6.ius
+* Mon Oct 28 2013 Mark McKinstry <mmckinst@nexcess.net> - 1.6.2-6.ius
 - build IUS RPM from 1.6.2-5 from f20
 - add ius suffix to release
 - clean up spec some
