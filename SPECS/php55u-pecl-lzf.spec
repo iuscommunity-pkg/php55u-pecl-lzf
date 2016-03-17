@@ -9,7 +9,7 @@
 
 Name: %{php_base}-pecl-lzf
 Version: 1.6.3
-Release: 1.ius%{?dist}
+Release: 2.ius%{?dist}
 Summary: Extension to handle LZF de/compression
 Group: Development/Languages
 License: PHP
@@ -26,17 +26,24 @@ Requires: %{php_base}(api) = %{php_core_api}
 Requires(post): %{php_base}-pear
 Requires(postun): %{php_base}-pear
 
+# provide the stock name
+Provides: %{real_name} = %{version}
+Provides: %{real_name}%{?_isa} = %{version}
+
+# provide the stock and IUS names without pecl
 Provides: php-%{pecl_name} = %{version}
 Provides: php-%{pecl_name}%{?_isa} = %{version}
-Provides: php-pecl(%{pecl_name}) = %{version}
-Provides: php-pecl(%{pecl_name})%{?_isa} = %{version}
 Provides: %{php_base}-%{pecl_name} = %{version}
 Provides: %{php_base}-%{pecl_name}%{?_isa} = %{version}
+
+# provide the stock and IUS names in pecl() format
+Provides: php-pecl(%{pecl_name}) = %{version}
+Provides: php-pecl(%{pecl_name})%{?_isa} = %{version}
 Provides: %{php_base}-pecl(%{pecl_name}) = %{version}
 Provides: %{php_base}-pecl(%{pecl_name})%{?_isa} = %{version}
 
+# conflict with the stock name
 Conflicts: %{real_name} < %{version}
-Provides: %{real_name} = %{version}
 
 # RPM 4.8
 %{?filter_provides_in: %filter_provides_in %{php_extdir}/.*\.so$}
@@ -120,6 +127,9 @@ fi
 
 
 %changelog
+* Thu Mar 17 2016 Carl George <carl.george@rackspace.com> - 1.6.3-2.ius
+- Clean up provides
+
 * Tue Apr 21 2015 Carl George <carl.george@rackspace.com> - 1.6.3-1.ius
 - Latest upstream
 - Remove patch0
