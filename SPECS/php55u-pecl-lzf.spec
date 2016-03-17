@@ -1,7 +1,3 @@
-%global php_apiver %((echo 0; php -i 2>/dev/null | sed -n 's/^PHP API => //p') | tail -1)
-%{!?__pecl: %{expand: %%global __pecl %{_bindir}/pecl}}
-%{!?php_extdir: %{expand: %%global php_extdir %(php-config --extension-dir)}}
-
 %define pecl_name LZF
 %define real_name php-pecl-lzf
 %define php_base php55u
@@ -75,7 +71,6 @@ phpize
 
 %install
 pushd %{pecl_name}-%{version}
-%{__rm} -rf %{buildroot}
 %{__make} install INSTALL_ROOT=%{buildroot}
 
 %{__mkdir_p} %{buildroot}%{php_inidir}
@@ -98,10 +93,6 @@ NO_INTERACTION=1 \
     -n -q \
     -d extension_dir=%{buildroot}%{php_extdir} \
     -d extension=lzf.so \
-
-
-%clean
-%{__rm} -rf %{buildroot}
 
 
 %if 0%{?pecl_install:1}
