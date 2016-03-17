@@ -69,14 +69,14 @@ slight speed cost.
 %build
 cd %{pecl_name}-%{version}
 phpize
-%configure --with-liblzf
+%configure --with-liblzf --with-php-config=%{_bindir}/php-config
 %{__make} %{?_smp_mflags}
 
 
 %install
 pushd %{pecl_name}-%{version}
 %{__rm} -rf %{buildroot}
-%{__make} install INSTALL_ROOT=%{buildroot} INSTALL="install -p"
+%{__make} install INSTALL_ROOT=%{buildroot}
 
 %{__mkdir_p} %{buildroot}%{php_inidir}
 %{__cat} > %{buildroot}%{php_inidir}/%{ini_name} << 'EOF'
@@ -130,6 +130,7 @@ fi
 - Clean up provides
 - Clean up filters
 - Install package.xml as %%{pecl_name}.xml, not %%{name}.xml
+- Use same configure and make commands as Fedora
 
 * Tue Apr 21 2015 Carl George <carl.george@rackspace.com> - 1.6.3-1.ius
 - Latest upstream
