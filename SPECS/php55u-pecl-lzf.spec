@@ -65,9 +65,6 @@ slight speed cost.
 # remove bundled lzf libs
 %{__rm} -rf %{pecl_name}-%{version}/libs
 
-[ -f package2.xml ] || %{__mv} package.xml package2.xml
-%{__mv} package2.xml %{pecl_name}-%{version}/%{pecl_name}.xml
-
 
 %build
 cd %{pecl_name}-%{version}
@@ -77,7 +74,7 @@ phpize
 
 
 %install
-cd %{pecl_name}-%{version}
+pushd %{pecl_name}-%{version}
 %{__rm} -rf %{buildroot}
 %{__make} install INSTALL_ROOT=%{buildroot} INSTALL="install -p"
 
@@ -86,9 +83,9 @@ cd %{pecl_name}-%{version}
 ; Enable %{pecl_name} extension module
 extension=lzf.so
 EOF
+popd
 
-%{__mkdir_p} %{buildroot}%{pecl_xmldir}
-%{__install} -p -m 644 %{pecl_name}.xml %{buildroot}%{pecl_xmldir}/%{name}.xml
+%{__install} -Dpm 644 package.xml %{buildroot}%{pecl_xmldir}/%{pecl_name}.xml
 
 
 %check
@@ -109,7 +106,7 @@ NO_INTERACTION=1 \
 
 %if 0%{?pecl_install:1}
 %post
-%{pecl_install} %{pecl_xmldir}/%{name}.xml >/dev/null || :
+%{pecl_install} %{pecl_xmldir}/%{pecl_name}.xml >/dev/null || :
 %endif
 
 
@@ -125,13 +122,14 @@ fi
 %doc %{pecl_name}-%{version}/CREDITS
 %config(noreplace) %{php_inidir}/%{ini_name}
 %{php_extdir}/lzf.so
-%{pecl_xmldir}/%{name}.xml
+%{pecl_xmldir}/%{pecl_name}.xml
 
 
 %changelog
 * Thu Mar 17 2016 Carl George <carl.george@rackspace.com> - 1.6.3-2.ius
 - Clean up provides
 - Clean up filters
+- Install package.xml as %%{pecl_name}.xml, not %%{name}.xml
 
 * Tue Apr 21 2015 Carl George <carl.george@rackspace.com> - 1.6.3-1.ius
 - Latest upstream
